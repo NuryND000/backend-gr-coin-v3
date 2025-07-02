@@ -544,13 +544,13 @@ ALTER TABLE `user`
 -- Ketidakleluasaan untuk tabel `coinexchange`
 --
 ALTER TABLE `coinexchange`
-  ADD CONSTRAINT `CoinExchange_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `CoinExchange_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `cointransaction`
 --
 ALTER TABLE `cointransaction`
-  ADD CONSTRAINT `CoinTransaction_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `CoinTransaction_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `complaint`

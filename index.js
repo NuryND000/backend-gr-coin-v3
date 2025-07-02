@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcryptjs");
@@ -358,15 +359,15 @@ app.delete("/cointransaction/:id", authMiddleware, adminMiddleware, async (req, 
 app.post("/complaint/:id", async (req, res) => {
   try {
     const { id } = req.params; // userId
-    const { complaint } = req.body;
-    const date = new Date();
+    const { complaint, date } = req.body;
+    const datenow = new Date(date || Date.now());
     const status = "pending"; // default status
 
     if (!complaint || complaint.trim() === "")
       return res.status(400).json({ error: "Complaint is required" });
 
     const newComplaint = await prisma.complaint.create({
-      data: { userId: Number(id), complaint, status, date },
+      data: { userId: Number(id), complaint, status, date: datenow },
     });
 
     res.json(newComplaint);
